@@ -2,10 +2,11 @@
   "name": "indecision",
   "version": "1.0.0",
   "main": "index.js",
-  "author": "Anant Thazhemadam",
+  "repository": "git@github.com:tazzzzzzz/indecision.git",
+  "author": "Anant Thazhemadam <anant.thazhemadam@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1"
+    "babel-cli": "^6.26.0",
+    "global": "^4.4.0"
   }
 }

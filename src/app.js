@@ -1,14 +1,36 @@
 class IndecisionApp extends React.Component{
+    constructor(props){
+        super(props);
+        this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
+        this.handlePick = this.handlePick.bind(this);
+        this.state = {
+            options: ['1','2','3','4','5']
+        };
+    }
+
+    handleDeleteOptions(){
+        this.setState(()=>{
+            return {
+                options: []
+            };
+        });
+    }
+
+    handlePick(){
+        const randomNum = Math.floor(Math.random()*(this.state.options.length));
+        const option = this.state.options[randomNum];
+        alert(option);
+    }
+
     render(){
         const title = 'Indecision';
         const subtitle = "Helping you in makin'decisions";
-        const options = ['1','2','3','4'];
 
         return(
             <div>
                 <Header title = {title} subtitle = {subtitle}/>
-                <Action />
-                <Options options = {options}/>
+                <Action optionsPresent = {this.state.options.length>0} handlePick = {this.handlePick} />
+                <Options options = {this.state.options} handleDeleteOptions = {this.handleDeleteOptions} />
                 <AddOption />
             </div>
         )
@@ -28,34 +50,27 @@ class Header extends React.Component {
 }
 
 class Action extends React.Component{
-    handleChoose(){
-        
-    }
+
     render(){
         return (
         <div>
-            <button onClick = {this.handleChoose}>What should I do?</button>
+            <button onClick = {this.props.handlePick} disabled = {!this.props.optionsPresent}>What should I do?</button>
         </div>
         );
     }
 }
 
 class Options extends React.Component{
-    constructor(props){
-        super(props);
-        this.removeAll = this.removeAll.bind(this);
-        
-    }
-    removeAll(){ 
-        alert('remove all');
-        console.log(this.props.options);
-    }
+    
     render(){
         console.log();
         return(
             <div>
-                <button onClick = {this.removeAll}>Remove all</button>
+                {/* Button to remove all options. */}
+                <button onClick = {this.props.handleDeleteOptions}>Remove all</button>
+                
                 {
+                    //Displays each option, as a separate option.
                     this.props.options.map((option) => <Option key = {option} optionText = {option}/>)
                 }
             </div>        
