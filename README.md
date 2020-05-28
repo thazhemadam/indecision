@@ -1,6 +1,9 @@
-## Babel
+## Build
 
-To have the application dynamically updated, run
-```
-babel src/app.js --out-file=public/scripts/app.js --presets=react,env --watch
-```
+To build using webpack, run
+```yarn run build```
+
+## Serving the assets
+
+To serve the directory up, run
+`yarn run serve`
