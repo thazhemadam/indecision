@@ -27,6 +27,32 @@ var IndecisionApp = function (_React$Component) {
     }
 
     _createClass(IndecisionApp, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            try {
+                // console.log('Fetching Data from Local Storage.');
+                var json = localStorage.getItem('indecisionOptions');
+                var jsonOptions = JSON.parse(json);
+                if (jsonOptions) {
+                    this.setState(function () {
+                        return { options: jsonOptions };
+                    });
+                }
+            } catch (e) {
+                // console.log(e);
+            }
+        }
+    }, {
+        key: 'componentDidUpdate',
+        value: function componentDidUpdate(prevProps, prevState) {
+
+            if (prevState.options.length !== this.state.options.length) {
+                // console.log('Saving data into local storage.');
+                var json = JSON.stringify(this.state.options);
+                localStorage.setItem('indecisionOptions', json);
+            }
+        }
+    }, {
         key: 'handleDeleteAll',
         value: function handleDeleteAll() {
             this.setState(function () {
@@ -134,6 +160,11 @@ var Options = function Options(props) {
             { onClick: props.handleDeleteAll },
             'Remove all'
         ),
+        props.options.length == 0 && React.createElement(
+            'p',
+            null,
+            'Please add an option to get started.'
+        ),
 
         //Displays each option, as a separate option.
         props.options.map(function (option) {
@@ -183,13 +214,14 @@ var AddOption = function (_React$Component2) {
 
             e.preventDefault();
             var option = e.target.elements.newOption.value.trim();
-            document.getElementById("newOption").value = "";
-
             var errorAfterAddOption = this.props.handleAddNewOption(option);
 
             this.setState(function () {
                 return { error: errorAfterAddOption };
             });
+            if (!errorAfterAddOption) {
+                e.target.elements.newOption.value = "";
+            }
         }
     }, {
         key: 'render',

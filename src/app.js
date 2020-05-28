@@ -10,6 +10,30 @@ class IndecisionApp extends React.Component{
         };
     }
 
+    componentDidMount(){
+        try{
+            // console.log('Fetching Data from Local Storage.');
+            const json = localStorage.getItem('indecisionOptions');
+            const jsonOptions = JSON.parse(json);
+            if(jsonOptions){
+                this.setState(()=>({options: jsonOptions}));
+            }
+        }catch(e){
+            // console.log(e);
+        }
+        
+    }
+
+    componentDidUpdate(prevProps, prevState){
+        
+        if(prevState.options.length !== this.state.options.length){
+            // console.log('Saving data into local storage.');
+            const json = JSON.stringify(this.state.options);
+            localStorage.setItem('indecisionOptions',json);
+        }
+    }
+
+
     handleDeleteAll(){
         this.setState(()=>({ options: [] }));
     }
@@ -87,7 +111,7 @@ const Options = (props) => {
         <div>
             {/* Button to remove all options. */}
             <button onClick = {props.handleDeleteAll}>Remove all</button>
-            
+            {props.options.length==0 && <p>Please add an option to get started.</p>}
             {
                 //Displays each option, as a separate option.
                 props.options.map((option) => <IndividualOption key = {option} optionText = {option} deleteIndividual = {props.handleDeleteIndividual}/>)
@@ -124,11 +148,12 @@ class AddOption extends React.Component{
         
         e.preventDefault();
         const option = e.target.elements.newOption.value.trim();
-        document.getElementById("newOption").value = "";
-
         const errorAfterAddOption= this.props.handleAddNewOption(option);
 
         this.setState(()=>({ error:errorAfterAddOption }));
+        if(!errorAfterAddOption){
+            e.target.elements.newOption.value = "";
+        }
     }
     render(){
         return(
