@@ -6,4 +6,4 @@ To build using webpack, run
 ## Serving the assets
 
 To serve the directory up, run
-`yarn run serve`
+`yarn run dev-serve`
