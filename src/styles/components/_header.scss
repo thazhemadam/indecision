@@ -1,0 +1,17 @@
+.header {
+    background: $deep-blue;
+    margin-bottom: $xl-size;
+    color:white;    
+}
+//BEM - Block Element Modifier. Block : Header. Title : "Indecision"
+.header__title{
+    font-size: $xl-size;    
+    margin: 2rem 1rem 0 0;
+}
+
+.header__subtitle {
+    color: $off-white;
+    font-size: 2.4rem;
+    font-weight: 500;
+    // margin: 0;
+}

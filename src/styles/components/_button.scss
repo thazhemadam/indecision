@@ -1,0 +1,32 @@
+.big-button{
+    background-color: $light-pink;
+    border: none;
+    border-bottom: .6rem solid darken($color: ($light-pink), $amount: 30%);
+    font-weight: bold;
+    font-size: $l-size;
+    color: rgb(77, 2, 139);
+    margin-bottom: $xl-size;
+    padding: 2.4rem;
+    width:100%;
+}
+
+.big-button:disabled{
+    opacity: 0.5;
+}
+
+.button {
+    background: $light-pink;
+    border:none;
+    background-color: $light-pink;
+    border: none;
+    border: .3rem solid darken($color: ($light-pink), $amount: 10%);
+    font-weight: 500;
+    padding: $s-size;
+    color: rgb(77, 2, 139);
+}
+
+.button--link {
+    background: none;
+    border: none;
+    color: $light-red;
+}

@@ -1,15 +1,16 @@
 import React from 'react';
 
 const IndividualOption = (props) => (
-        <div>
-            <li > 
-                {props.optionText} &nbsp;&nbsp;&nbsp;&nbsp;
+        <div className='option'>
+            
+                <p className='option__text'>{props.count}. {props.optionText} </p>
 
-                <button onClick = {(e) =>
+                <button 
+                    className='button--link'
+                    onClick = {(e) =>
                                 {props.deleteIndividual(props.optionText);}}>
                 Remove
                 </button>
-            </li>
         </div>
 );
 
