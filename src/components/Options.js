@@ -1,8 +1,7 @@
 import React from 'react';
 import IndividualOption from './IndividualOption'
 
-const Options = (props) => {
-    return(
+const Options = (props) => (
         <div>
             {/* Button to remove all options. */}
             <button onClick = {props.handleDeleteAll}>Remove all</button>
@@ -12,7 +11,7 @@ const Options = (props) => {
                 props.options.map((option) => <IndividualOption key = {option} optionText = {option} deleteIndividual = {props.handleDeleteIndividual}/>)
             }
         </div>        
-    );
-}
+);
+
 
 export default Options;

@@ -3,10 +3,12 @@ import Header from './Header';
 import Action from './Action';
 import Options from './Options';
 import AddOption from './AddOption';
+import OptionModal from './OptionModal';
 
 export default class IndecisionApp extends React.Component{
     state = {
-        options: []
+        options: [],
+        selectedOption: undefined
     };
     
     handleDeleteAll = () => {
@@ -23,8 +25,11 @@ export default class IndecisionApp extends React.Component{
 
     handleChooseRandom = () => {
         const randomNum = Math.floor(Math.random()*(this.state.options.length));
-        const option = this.state.options[randomNum];
-        alert(option);
+        const randomOption = this.state.options[randomNum];
+        // alert(option);
+        this.setState(()=>({
+            selectedOption: randomOption
+        }));
     };
 
     handleAddNewOption = (newOption) => {
@@ -41,6 +46,12 @@ export default class IndecisionApp extends React.Component{
         this.setState((prevState)=>({ options: prevState.options.concat(newOption)}));
     };
 
+    clearModal = () => {
+        this.setState((prevState)=>({
+            selectedOption:!prevState.selectedOption
+        }));
+    };
+    
     componentDidMount(){
         try{
             // console.log('Fetching Data from Local Storage.');
@@ -70,10 +81,25 @@ export default class IndecisionApp extends React.Component{
 
         return(
             <div>
-                <Header subtitle = {subtitle}/>
-                <Action optionsPresent = {this.state.options.length>0} handleChooseRandom = {this.handleChooseRandom} />
-                <Options options = {this.state.options} handleDeleteAll = {this.handleDeleteAll} handleDeleteIndividual = {this.handleDeleteIndividualOption}/>
-                <AddOption handleAddNewOption = {this.handleAddNewOption} />
+                <Header 
+                    subtitle = {subtitle}
+                />
+                <Action 
+                    optionsPresent = {this.state.options.length>0} 
+                    handleChooseRandom = {this.handleChooseRandom} 
+                />
+                <Options 
+                    options = {this.state.options} 
+                    handleDeleteAll = {this.handleDeleteAll} 
+                    handleDeleteIndividual = {this.handleDeleteIndividualOption}
+                />
+                <AddOption 
+                    handleAddNewOption = {this.handleAddNewOption} 
+                />
+                <OptionModal 
+                    modalTrigger = {this.state.selectedOption}
+                    clearModal = {this.clearModal}
+                />
             </div>
         )
     }

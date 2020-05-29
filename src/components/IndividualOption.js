@@ -1,7 +1,6 @@
 import React from 'react';
 
-const IndividualOption = (props) => {
-    return(
+const IndividualOption = (props) => (
         <div>
             <li > 
                 {props.optionText} &nbsp;&nbsp;&nbsp;&nbsp;
@@ -12,7 +11,7 @@ const IndividualOption = (props) => {
                 </button>
             </li>
         </div>
-    );
-};
+);
+
 
 export default IndividualOption;
