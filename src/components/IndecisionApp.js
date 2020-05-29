@@ -40,7 +40,7 @@ export default class IndecisionApp extends React.Component{
         }
 
         else if(this.state.options.indexOf(newOption)>-1){            
-            return ('Task already Present and Pending!');
+            return ('Task already exists and is still due for completion!');
         }
 
         this.setState((prevState)=>({ options: prevState.options.concat(newOption)}));
