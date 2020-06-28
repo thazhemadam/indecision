@@ -6,9 +6,9 @@ The app will then return a random task out of all the tasks.<br>
 ## Build
 
 To build using webpack, run
-```yarn run build```
+```npm run build```
 
 ## Serving the assets
 
 To serve the directory up, run
-`yarn run dev-serve`
+`npm run dev-serve`
